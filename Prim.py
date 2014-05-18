@@ -1,68 +1,68 @@
-def weight(A, u, v):
-    return A[u][v]
+def weight(ax, u, v):
+    return ax[u][v]
 
 
-def adjacent(A, u):
-    L = []
-    for x in range(len(A)):
-        if A[u][x] > 0 and x != u:
-            L.insert(0, x)
-    return L
+def adjacent(ax, u):
+    lx = []
+    for x in range(len(ax)):
+        if ax[u][x] > 0 and x != u:
+            lx.insert(0, x)
+    return lx
 
 
-def extract_min(Q):
-    q = Q[0]
-    Q.remove(Q[0])
+def extract_min(qx):
+    q = qx[0]
+    qx.remove(qx[0])
     return q
 
 
-def decrease_key(Q, K):
-    for i in range(len(Q)):
-        for j in range(len(Q)):
-            if K[Q[i]] < K[Q[j]]:
-                s = Q[i]
-                Q[i] = Q[j]
-                Q[j] = s
+def decrease_key(qx, kx):
+    for i in range(len(qx)):
+        for j in range(len(qx)):
+            if kx[qx[i]] < kx[qx[j]]:
+                s = qx[i]
+                qx[i] = qx[j]
+                qx[j] = s
 
 
-def prim(V, A, r):
+def prim(vx, ax, r):
     u = 0
     v = 0
 
-    P = [None]*len(V)
+    px = [None]*len(vx)
 
-    K = [999999]*len(V)
+    kx = [999999]*len(vx)
 
-    Q = [0]*len(V)
-    for u in range(len(Q)):
-        Q[u] = V[u]
+    qx = [0]*len(vx)
+    for u in range(len(qx)):
+        qx[u] = vx[u]
 
-    K[r] = 0
-    decrease_key(Q, K)
+    kx[r] = 0
+    decrease_key(qx, kx)
 
-    while len(Q) > 0:
-        u = extract_min(Q)
+    while len(qx) > 0:
+        u = extract_min(qx)
 
-        Adj = adjacent(A, u)
-        for v in Adj:
-            w = weight(A, u, v)
+        adj = adjacent(ax, u)
+        for v in adj:
+            w = weight(ax, u, v)
 
-            if Q.count(v) > 0 and w < K[v]:
-                P[v] = u
-                K[v] = w
-                decrease_key(Q, K)
-    return P
+            if qx.count(v) > 0 and w < kx[v]:
+                px[v] = u
+                kx[v] = w
+                decrease_key(qx, kx)
+    return px
 
-A = [[0,  4,  0,  0,  0,  0,  0,  8,  0],
-     [4,  0,  8,  0,  0,  0,  0, 11,  0],
-     [0,  8,  0,  7,  0,  4,  5,  0,  2],
-     [0,  0,  7,  0,  9, 14,  0,  0,  0],
-     [0,  0,  0,  9,  0, 10,  0,  1,  0],
-     [0,  0,  4, 14, 10,  0,  2,  0,  0],
-     [0,  0,  0,  0,  0,  2,  0,  1,  6],
-     [8, 11,  0,  0,  1,  0,  1,  0,  7],
-     [0,  0,  2,  0,  0,  0,  6,  7,  0]]
+ax = [[0,  4,  0,  0,  0,  0,  0,  8,  0],
+      [4,  0,  8,  0,  0,  0,  0, 11,  0],
+      [0,  8,  0,  7,  0,  4,  5,  0,  2],
+      [0,  0,  7,  0,  9, 14,  0,  0,  0],
+      [0,  0,  0,  9,  0, 10,  0,  1,  0],
+      [0,  0,  4, 14, 10,  0,  2,  0,  0],
+      [0,  0,  0,  0,  0,  2,  0,  1,  6],
+      [8, 11,  0,  0,  1,  0,  1,  0,  7],
+      [0,  0,  2,  0,  0,  0,  6,  7,  0]]
 
-V = [0, 1, 2, 3, 4, 5, 6, 7, 8 ]
-P = prim(V, A, 0)
-print P
+vx = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+px = prim(vx, ax, 0)
+print px
