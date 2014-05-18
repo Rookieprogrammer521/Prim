@@ -1,21 +1,28 @@
-def weight():
-    
-    pass
+def weight(A, u, v):
+    return A[u][v]
 
 
-def adjacent(A):
-
-    pass
-
-
-def extract_min(Q):
-
-    pass
+def adjacent(A, u):
+    L = []
+    for x in range(len(A)):
+        if A[u][x] > 0 and x <> u:
+            L.insert(0,x)
+    return L
 
 
-def decrease_key(Q):
+def extractMin(Q):
+    q = Q[0]
+    Q.remove(Q[0])
+    return q
 
-    pass
+
+def decreaseKey(Q, K):
+    for i in range(len(Q)):
+        for j in range(len(Q)):
+            if K[Q[i]] < K[Q[j]]:
+                s = Q[i]
+                Q[i] = Q[j]
+                Q[j] = s
 
 
 def prim(V, A, r):
