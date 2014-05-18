@@ -10,13 +10,13 @@ def adjacent(A, u):
     return L
 
 
-def extractMin(Q):
+def extract_min(Q):
     q = Q[0]
     Q.remove(Q[0])
     return q
 
 
-def decreaseKey(Q, K):
+def decrease_key(Q, K):
     for i in range(len(Q)):
         for j in range(len(Q)):
             if K[Q[i]] < K[Q[j]]:
@@ -38,10 +38,10 @@ def prim(V, A, r):
         Q[u] = V[u]
 
     K[r] = 0
-    decreaseKey(Q, K)
+    decrease_key(Q, K)
 
     while len(Q) > 0:
-        u = extractMin(Q)   
+        u = extract_min(Q)   
 
         Adj = adjacent(A, u)
         for v in Adj:
@@ -51,7 +51,7 @@ def prim(V, A, r):
             if Q.count(v)>0 and w < K[v]:
                 P[v] = u
                 K[v] = w
-                decreaseKey(Q, K)
+                decrease_key(Q, K)
     return P
 
 
