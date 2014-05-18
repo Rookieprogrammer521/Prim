@@ -1,1 +1,1 @@
-print("Labas")
+print ("labas")
