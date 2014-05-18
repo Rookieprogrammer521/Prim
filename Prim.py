@@ -5,8 +5,8 @@ def weight(A, u, v):
 def adjacent(A, u):
     L = []
     for x in range(len(A)):
-        if A[u][x] > 0 and x <> u:
-            L.insert(0,x)
+        if A[u][x] > 0 and x != u:
+            L.insert(0, x)
     return L
 
 
@@ -29,11 +29,11 @@ def prim(V, A, r):
     u = 0
     v = 0
 
-    P=[None]*len(V)
+    P = [None]*len(V)
 
     K = [999999]*len(V)
 
-    Q=[0]*len(V)
+    Q = [0]*len(V)
     for u in range(len(Q)):
         Q[u] = V[u]
 
@@ -41,30 +41,28 @@ def prim(V, A, r):
     decrease_key(Q, K)
 
     while len(Q) > 0:
-        u = extract_min(Q)   
+        u = extract_min(Q)
 
         Adj = adjacent(A, u)
         for v in Adj:
             w = weight(A, u, v)
 
-
-            if Q.count(v)>0 and w < K[v]:
+            if Q.count(v) > 0 and w < K[v]:
                 P[v] = u
                 K[v] = w
                 decrease_key(Q, K)
     return P
 
-A = [ [0,  4,  0,  0,  0,  0,  0,  8,  0],
-      [4,  0,  8,  0,  0,  0,  0, 11,  0],
-      [0,  8,  0,  7,  0,  4,  5,  0,  2],
-      [0,  0,  7,  0,  9, 14,  0,  0,  0],
-      [0,  0,  0,  9,  0, 10,  0,  1,  0],
-      [0,  0,  4, 14, 10,  0,  2,  0,  0],
-      [0,  0,  0,  0,  0,  2,  0,  1,  6],
-      [8, 11,  0,  0,  1,  0,  1,  0,  7],
-      [0,  0,  2,  0,  0,  0,  6,  7,  0]]
+A = [[0,  4,  0,  0,  0,  0,  0,  8,  0],
+     [4,  0,  8,  0,  0,  0,  0, 11,  0],
+     [0,  8,  0,  7,  0,  4,  5,  0,  2],
+     [0,  0,  7,  0,  9, 14,  0,  0,  0],
+     [0,  0,  0,  9,  0, 10,  0,  1,  0],
+     [0,  0,  4, 14, 10,  0,  2,  0,  0],
+     [0,  0,  0,  0,  0,  2,  0,  1,  6],
+     [8, 11,  0,  0,  1,  0,  1,  0,  7],
+     [0,  0,  2,  0,  0,  0,  6,  7,  0]]
 
-V = [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
-
+V = [0, 1, 2, 3, 4, 5, 6, 7, 8 ]
 P = prim(V, A, 0)
 print P
